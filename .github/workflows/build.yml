@@ -40,7 +40,11 @@ jobs:
         steps:
           - name: Pull the docker image
             run: docker pull aqkhan001/netflix:latest
+          - name: Docker scout to scan image
+            run: docker scout cves aqkhan001/netflix:latest
           - name: Trivy image scan
             run: trivy image aqkhan001/netflix:latest
           - name: Run the container netflix
             run: docker run -d --name netflix -p 8081:80 aqkhan001/netflix:latest
+
+            
